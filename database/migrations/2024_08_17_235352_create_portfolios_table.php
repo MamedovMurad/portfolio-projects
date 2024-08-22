@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('likes')->nullable();
             $table->text('desc')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('project_id')->nullable();
             $table->timestamps();
 
 
@@ -33,6 +34,11 @@ return new class extends Migration
             $table->foreign('category_id')
             ->references('id')
             ->on('categories')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreign('project_id')
+            ->references('id')
+            ->on('projects')
             ->onUpdate('cascade')
             ->onDelete('cascade');
         });
